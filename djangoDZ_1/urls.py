@@ -19,7 +19,8 @@ from homework import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('product/<int:id>/', views.get_one_product),
-    path('product/', views.get_all_product)
+    path('product/', views.get_all_product),
+    path('add_product/', views.add_product),
 
 
 ]

@@ -6,6 +6,11 @@
 </head>
 <body>
 <h1>Все продукты</h1>
+<form action="" method="get">
+    <input type="text" plaсeholder="Поисковик" name="search">
+    <input type="submit" value="Найти">
+</form>
+<a href="/add_product/"> <button> Добавить продукт</button> </a>
 {% for i in all_product %}
     <a href="/product/{{ i.id }}/">
         <p>{{ i.id }}. {{ i.title }}</p>
