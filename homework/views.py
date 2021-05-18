@@ -1,5 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+
+from homework.forms import ProductForm
 from homework.models import Product, Review
 # Create your views here.
 
@@ -29,3 +31,20 @@ def add_product(request):
         Product.objects.create(name=name)
         return redirect('/product/')
     return render(request, 'add.html')
+
+
+def add(request):
+    if request.method == 'POST':
+        print(request.POST)
+        form = ProductForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/product/')
+        else:
+            return render(request, 'add1.html', context={
+                'form': form
+            })
+    data = {
+        'form': ProductForm()
+    }
+    return render(request, 'add1.html', context=data)
