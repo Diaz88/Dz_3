@@ -40,7 +40,3 @@ class Review (models.Model):
 
 
 
-
-
-
-
