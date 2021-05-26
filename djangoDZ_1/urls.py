@@ -22,5 +22,6 @@ urlpatterns = [
     path('product/', views.get_all_product),
     path('add_product/',views.add_product),
     path('add/',views.add),
-
+    path('', views.main_page),
+    path('register/', views.register),
 ]

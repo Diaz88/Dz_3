@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
-from homework.forms import ProductForm
+from homework.forms import ProductForm, UserCreationForm
 from homework.models import Product, Category
 
 
@@ -50,3 +50,25 @@ def add(request):
         'form': ProductForm()
     }
     return render(request, 'add1.html', context=data)
+
+def main_page(request):
+    return render(request, "main.html")
+
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            print('POST запрос без ошибок')
+            return redirect('/admin/')
+        else:
+            print('POST запрос с ошибкой')
+            return render(request, 'register.html', context={'form': form })
+
+    data = {
+        'form': UserCreationForm()
+    }
+    print('GET запрос')
+    return render(request, 'register.html', context=data)
+
