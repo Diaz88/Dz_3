@@ -31,6 +31,7 @@ class ProductForm(forms.Form):
         product.save()
         return product
 
+
 class UserCreationForm(forms.Form):
     username = forms.CharField(max_length=100,
                                widget=TextInput(attrs={
@@ -43,17 +44,16 @@ class UserCreationForm(forms.Form):
                                    'class': 'form-control'
                                }))
     password1 = forms.CharField(max_length=100,
-                               widget=PasswordInput(attrs={
-                                   'placeholder': 'Repeat Password',
-                                   'class': 'form-control'
-                               }))
+                                widget=PasswordInput(attrs={
+                                    'placeholder': 'Repeat Password',
+                                    'class': 'form-control'
+                                }))
 
     def clean_username(self):
         username = self.cleaned_data['username']
         if User.objects.filter(username=username).count() > 0:
             raise ValidationError('Такой пользователь уже существует!')
         return username
-
 
     def clean_password1(self):
         if self.cleaned_data['password'] != self.cleaned_data['password1']:
@@ -67,3 +67,15 @@ class UserCreationForm(forms.Form):
         user.save()
         return user
 
+
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=100,
+                               widget=TextInput(attrs={
+                                   'placeholder': 'NickName',
+                                   'class': 'form-control'
+                               }))
+    password = forms.CharField(max_length=100,
+                               widget=PasswordInput(attrs={
+                                   'placeholder': 'Repeat Password',
+                                   'class': 'form-control'
+                               }))

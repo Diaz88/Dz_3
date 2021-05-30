@@ -5,11 +5,13 @@
     <title>Title</title>
 </head>
 <body>
-<p>{{ product.id }}. {{ product.title }}</p>
-<h2>{{ product.id }}. {{ product.title }}</h2>
-{% for foo in reviews %}
+
+<h2>{{ category.id }}. {{ category.name }}</h2>
+{% for foo in product %}
     <hr>
-    <p>обзор товара: {{ foo.text }}</p>
+    <p>Наименование:  {{ foo.title }}</p>
+    <p>Описание продута:  {{ foo.description }}</p>
+    <p>Цена:  {{ foo.price }}</p>
 {% endfor %}
 </body>
 </html>
