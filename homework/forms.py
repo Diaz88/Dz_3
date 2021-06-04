@@ -1,9 +1,9 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from django.forms import TextInput, PasswordInput
+from django.forms import TextInput, PasswordInput, NumberInput, Select
 
-from homework.models import Product
+from homework.models import Product, Category
 
 
 class Validation:
@@ -79,3 +79,23 @@ class LoginForm(forms.Form):
                                    'placeholder': 'Repeat Password',
                                    'class': 'form-control'
                                }))
+
+class ProductForm(forms.ModelForm):
+    name = forms.CharField(max_length=200,
+                           widget=TextInput(attrs={
+                               'placeholder': 'Наименование продукта',
+                               'class': 'form-control'
+                           }))
+    price = forms.IntegerField(widget=NumberInput(attrs={
+                               'placeholder': 'Цена',
+                               'class': 'form-control'
+                           }))
+    category = forms.ModelChoiceField(
+        queryset=Category.objects.all(),
+        widget=Select(attrs={
+        'placeholder': 'Категория',
+        'class': 'form-control'
+    }))
+    class Meta:
+        model = Product
+        fields = '__all__'

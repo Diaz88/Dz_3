@@ -5,11 +5,11 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Добавить продукт</h1>
+<h1>Добавить товар</h1>
 <form action="/add/" method="post">
     {% csrf_token %}
   {{ form }}
-    <input type="submit" value="Отправить">
+    <input type="submit" class="btn-primary" value="Отправить">
 
 </form>
 </body>

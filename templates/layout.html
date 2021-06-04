@@ -20,20 +20,28 @@
           <a class="nav-link active" aria-current="page" href="/">Главная </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/product/">Все продукты</a>
+          <a class="nav-link" href="/product/">Все категории</a>
+        </li>
+      <li class="nav-item">
+          <a class="nav-link" href="/products/">Все продукты</a>
         </li>
            <li class="nav-item">
-          <a class="nav-link" href="/add_product/">Добавить продукт</a>
+          <a class="nav-link" href="/add_product/">Добавить категорию</a>
+        </li>
+       <li class="nav-item">
+          <a class="nav-link" href="/add_products/">Добавить продукт</a>
         </li>
           <li class="nav-item">
           <a class="nav-link" href="/register/">Регистрация</a>
         </li>
-           <li class="nav-item">
-          <a class="nav-link" href="/login/">Войти</a>
-        </li>
+
           {% if username %}
               <li class="nav-item">
           <a class="nav-link" href="/logout/">Выйти({{ username }})</a>
+        </li>
+          {% else %}
+              <li class="nav-item">
+          <a class="nav-link" href="/login/">Войти</a>
         </li>
 
           {% endif %}
@@ -58,11 +66,11 @@
       </form>
     </div>
 </nav>
-
+<div class="container" style="text-align: left">
 {% block content %}
 
 {% endblock %}
 
-
+</div>
 </body>
 </html>

@@ -116,3 +116,30 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return redirect('/')
+
+
+def add_products(request):
+    if request.method == 'POST':
+        form = ProductForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/students/')
+        else:
+            data = {
+                'form': form,
+                'username': auth.get_user(request).username
+            }
+            return render(request, 'add_products.html', context=data)
+    data = {
+        'form': ProductForm(),
+        'username': auth.get_user(request).username
+    }
+    return render(request, 'add_products.html', context=data)
+
+
+def products(request):
+    data = {
+        'products': Product.objects.all(),
+        'username': auth.get_user(request).username
+    }
+    return render(request, 'products.html', context=data)
